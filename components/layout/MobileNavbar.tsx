@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import NextImage from "next/image";
 
 const NAV_ITEMS = [
     { label: "Home", href: "#" },
@@ -20,10 +21,17 @@ export default function MobileNavbar() {
             {/* Hamburger Button (Mobile Only) */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed top-6 right-6 z-50 p-3 bg-black/50 backdrop-blur-md rounded-full border border-white/10 text-white md:hidden hover:bg-white/10 transition-colors"
+                className="fixed top-6 right-6 z-50 md:hidden"
                 aria-label="Open Menu"
             >
-                <Menu className="w-6 h-6" />
+                <NextImage
+                    src="/menu-sticker.gif"
+                    alt="Open Menu"
+                    width={50}
+                    height={50}
+                    className="unoptimized hover:scale-110 transition-transform duration-300"
+                    unoptimized
+                />
             </button>
 
             {/* Full Screen Menu Overlay */}
