@@ -13,7 +13,7 @@ export default function About() {
     };
 
     return (
-        <section id="about" className="min-h-screen py-24 px-6 md:px-12 flex flex-col justify-center relative overflow-hidden">
+        <section id="about" className="min-h-screen pt-24 pb-48 md:py-24 px-6 md:px-12 flex flex-col justify-center relative overflow-hidden">
             {/* Background Accent */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
 
