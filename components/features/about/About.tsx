@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { PenTool, Terminal } from "lucide-react";
 import ScrollSticker from "@/components/ui/ScrollSticker";
 
 import PhotoDeck from "./PhotoDeck";
@@ -71,15 +72,26 @@ export default function About() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                         variants={fadeInUp}
-                        className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10"
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-white/10"
                     >
-                        <div>
-                            <h4 className="text-2xl font-bold text-white mb-2">Design</h4>
-                            <p className="text-sm text-zinc-500">Minimalist • User-Centric • Story-driven</p>
+                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-colors group">
+                            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <PenTool className="w-5 h-5 text-accent" />
+                            </div>
+                            <h4 className="text-xl font-bold text-white mb-2">Design</h4>
+                            <p className="text-sm text-zinc-300 leading-relaxed">
+                                Minimalist • User-Centric • Story-driven
+                            </p>
                         </div>
-                        <div>
-                            <h4 className="text-2xl font-bold text-white mb-2">Code</h4>
-                            <p className="text-sm text-zinc-500">Clean • Semantic • High-Performance</p>
+
+                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-colors group">
+                            <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <Terminal className="w-5 h-5 text-blue-500" />
+                            </div>
+                            <h4 className="text-xl font-bold text-white mb-2">Code</h4>
+                            <p className="text-sm text-zinc-300 leading-relaxed">
+                                Clean • Semantic • High-Performance
+                            </p>
                         </div>
                     </motion.div>
                 </motion.div>
