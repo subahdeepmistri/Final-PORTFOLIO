@@ -5,7 +5,7 @@ import { Github, Instagram, Linkedin, Mail, MessageCircle, Phone } from "lucide-
 
 export default function Contact() {
     return (
-        <section id="contact" className="min-h-screen flex flex-col justify-between pt-20 pb-48 md:py-24 px-4 md:px-12 bg-black relative overflow-hidden">
+        <section id="contact" className="min-h-[100dvh] flex flex-col justify-between pt-20 pb-12 md:py-24 px-4 md:px-12 bg-black relative overflow-hidden">
             {/* Abstract Background Element */}
             <div className="absolute bottom-0 left-0 w-full h-[500px] bg-linear-to-t from-zinc-900 to-transparent pointer-events-none" />
 
