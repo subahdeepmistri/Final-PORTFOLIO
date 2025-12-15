@@ -97,7 +97,7 @@ export default function Contact() {
                         <span>LinkedIn</span>
                     </a>
 
-                    <a href="https://instagram.com/subhadeepmistri" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.instagram.com/roronoa._.zorox/" target="_blank" rel="noopener noreferrer"
                         className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-linear-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#fd1d1d]/30 transition-all">
                         <Instagram className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                         <span>Instagram</span>
