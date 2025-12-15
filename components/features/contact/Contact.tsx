@@ -85,7 +85,7 @@ export default function Contact() {
 
                 {/* Social Grid - Mobile: 2 cols, Desktop: Flex row */}
                 <div className="grid grid-cols-2 md:flex md:flex-wrap gap-4 md:gap-6">
-                    <a href="https://github.com/subhadeepmistri" target="_blank" rel="noopener noreferrer"
+                    <a href="https://github.com/subahdeepmistri" target="_blank" rel="noopener noreferrer"
                         className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-white text-black font-bold text-sm md:text-lg hover:bg-zinc-200 hover:scale-[1.02] transition-all">
                         <Github className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                         <span>GitHub</span>
