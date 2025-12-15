@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Cinematic Portfolio V2
 
-## Getting Started
+> A futuristic, high-performance portfolio experience designed for the modern web.
 
-First, run the development server:
+![Portfolio Preview](/public/skills/bg-design.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is a **mobile-first, cinematic portfolio** built to showcase creative engineering and design skills. It moves beyond standard static sites by incorporating immersive holographic interactions, fluid gesture-based animations, and a polished dark-mode aesthetic.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The codebase is fully optimized for performance, accessibility, and responsiveness across all devices—from large desktop displays to mobile screens.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+-   **Framework**: [Next.js 15](https://nextjs.org/) (App Directory)
+-   **Core**: [React 18](https://react.dev/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Animation**: [Framer Motion](https://www.framer.com/motion/)
+-   **Smooth Scroll**: [Lenis](https://lenis.darkroom.engineering/)
+-   **Icons**: [Lucide React](https://lucide.dev/)
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📱 Fully Responsive & Mobile-First
+-   **Adaptive Typography**: Utilizes `clamp()` based font sizing for perfect scaling on any screen.
+-   **Touch-Optimized**: Custom "Mobile Navbar" with backdrop blur and large touch targets.
+-   **Snap-Scroll Projects**: Mobile users enjoy a native-app-like horizontal carousel for browsing projects.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🎨 Visual Excellence
+-   **Cinematic Hero**: Immersive background imagery with scroll-driven parallax effects.
+-   **Skill Cards**: Custom-generated 8K abstract backgrounds (Cybernetic/Fluid/Circuitry) with "cinematic zoom" on hover.
+-   **Photo Deck**: An infinite-looping, swipeable stack of memories in the About section.
+-   **Custom Cursor**: A magnetic, trailing cursor that enhances interactivity (Desktop only).
 
-## Deploy on Vercel
+### ⚡ Performance
+-   **Zero Layout Shift**: Meticulously sized images and placeholder skeletons.
+-   **Smooth Scrolling**: Integrated `Lenis` for buttery smooth scroll mechanics without the weight of heavy libraries.
+-   **Static Export Ready**: Configured for `next export` to enable drag-and-drop deployment on Netlify/Vercel.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏃‍♂️ Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/subahdeepmistri/Final-PORTFOLIO.git
+    cd Final-PORTFOLIO
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open your browser:**
+    Navigate to `http://localhost:3000` to view the site.
+
+## 📦 Deployment
+
+This project is configured for **Static Export**.
+
+To deploy manually (Drag & Drop):
+1.  Run `npm run build`.
+2.  Upload the `out` folder to Netlify.
+
+*Recommended:* Connect this repository to **Netlify** or **Vercel** for automatic continuous deployment.
+
+---
+
+Designed & Developed by **Subhadeep Mistri**.
