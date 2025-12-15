@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/lib/data";
-import Image from "next/image";
+import NextImage from "next/image";
 import ProjectCard from "./ProjectCard";
 import ScrollSticker from "@/components/ui/ScrollSticker";
 
@@ -19,7 +19,7 @@ export default function Projects() {
             <div className="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-6 relative">
                 {/* Mobile Decoration Sticker - Left Side */}
                 <div className="absolute left-0 top-0 md:hidden pointer-events-none">
-                    <Image
+                    <NextImage
                         src="/mobile-decoration.gif"
                         alt="Decoration"
                         width={100}
