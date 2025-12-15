@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Code2, Palette, Terminal } from "lucide-react";
 import Image from "next/image";
+import ScrollSticker from "@/components/ui/ScrollSticker";
 
 const skills = [
     {
@@ -27,7 +28,7 @@ const skills = [
 
 export default function Skills() {
     return (
-        <section className="pt-20 pb-16 md:pt-24 md:pb-12 px-6 md:px-12 bg-black relative">
+        <section id="skills" className="pt-20 pb-32 md:pt-24 md:pb-48 px-6 md:px-12 bg-black relative">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -90,6 +91,9 @@ export default function Skills() {
                     ))}
                 </div>
             </div>
-        </section>
+
+            {/* Next Section Indicator */}
+            <ScrollSticker targetId="#projects" className="bottom-4 md:bottom-8" />
+        </section >
     )
 }

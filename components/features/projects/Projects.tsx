@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/lib/data";
+import Image from "next/image";
 import ProjectCard from "./ProjectCard";
+import ScrollSticker from "@/components/ui/ScrollSticker";
 
 export default function Projects() {
     const [activeTab, setActiveTab] = useState<"dev" | "design">("dev");
@@ -12,9 +14,21 @@ export default function Projects() {
     const displayProjects = projects.filter(p => p.type === activeTab);
 
     return (
-        <section className="pt-12 pb-20 md:pt-12 md:pb-24 px-6 md:px-12 bg-black relative" id="projects">
+        <section className="pt-12 pb-32 md:pt-12 md:pb-48 px-6 md:px-12 bg-black relative" id="projects">
             {/* Section Header */}
-            <div className="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div className="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-6 relative">
+                {/* Mobile Decoration Sticker - Left Side */}
+                <div className="absolute left-0 top-0 md:hidden pointer-events-none">
+                    <Image
+                        src="/mobile-decoration.gif"
+                        alt="Decoration"
+                        width={100}
+                        height={100}
+                        className="unoptimized opacity-80"
+                        unoptimized
+                    />
+                </div>
+
                 <div>
                     <h2 className="text-sm tracking-[0.3em] text-accent uppercase mb-4">Selected Works</h2>
                     <h3 className="text-4xl md:text-6xl font-heading font-bold text-white">
@@ -104,6 +118,9 @@ export default function Projects() {
                     </motion.div>
                 </motion.div>
             </div>
+
+            {/* Next Section Indicator */}
+            <ScrollSticker targetId="#contact" className="bottom-4 md:bottom-8" />
         </section>
     );
 }

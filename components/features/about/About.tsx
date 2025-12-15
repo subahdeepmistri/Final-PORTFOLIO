@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import ScrollSticker from "@/components/ui/ScrollSticker";
 
 import PhotoDeck from "./PhotoDeck";
 
@@ -83,6 +84,8 @@ export default function About() {
                     </motion.div>
                 </motion.div>
             </div>
+            {/* Next Section Indicator */}
+            <ScrollSticker targetId="#skills" className="bottom-4 md:bottom-8" />
         </section>
     );
 }
