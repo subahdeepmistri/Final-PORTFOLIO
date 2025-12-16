@@ -154,7 +154,7 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
     return (
         <div
             ref={containerRef}
-            className="relative w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-white/10 shadow-2xl"
+            className="relative w-full aspect-video md:aspect-21/9 rounded-2xl overflow-hidden cursor-ew-resize select-none border border-white/10 shadow-2xl"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
@@ -165,7 +165,7 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
                 className="absolute inset-0 w-full h-full flex items-center justify-center text-white font-bold text-2xl"
                 style={{ background: after }}
             >
-                <div className="bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg">{labelAfter}</div>
+                <div className="bg-black/40 px-4 py-2 rounded-lg">{labelAfter}</div>
             </div>
 
             {/* BEFORE IMAGE (Clipped on top) */}
@@ -174,7 +174,7 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
                 style={{ width: `${sliderPosition}%`, background: before }}
             >
                 <div className="absolute inset-0 w-full h-full flex items-center justify-center text-zinc-400 font-bold text-2xl">
-                    <div className="bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg whitespace-nowrap">{labelBefore}</div>
+                    <div className="bg-black/60 px-4 py-2 rounded-lg whitespace-nowrap">{labelBefore}</div>
                 </div>
                 {/* Border line between images */}
                 <div className="absolute right-0 top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]" />
@@ -191,8 +191,8 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
             </div>
 
             {/* Labels (Floating) */}
-            <div className="absolute top-4 left-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50 bg-black/50 px-2 py-1 rounded-md pointer-events-none">Before</div>
-            <div className="absolute top-4 right-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50 bg-black/50 px-2 py-1 rounded-md pointer-events-none">After</div>
+            <div className="absolute top-4 left-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 bg-black/60 px-2 py-1 rounded-md pointer-events-none">Before</div>
+            <div className="absolute top-4 right-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 bg-black/60 px-2 py-1 rounded-md pointer-events-none">After</div>
         </div>
     );
 }
@@ -239,6 +239,7 @@ export default function ProcessDeck() {
                     <>
                         {/* Backdrop */}
                         <motion.div
+                            key="modal-backdrop"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -248,13 +249,14 @@ export default function ProcessDeck() {
 
                         {/* Deck Container */}
                         <motion.div
+                            key="modal-container"
                             initial={{ opacity: 0, y: 20, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 20, scale: 0.95 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
                             className="fixed inset-0 z-70 flex items-center justify-center pointer-events-none"
                         >
-                            <div className="pointer-events-auto bg-zinc-950 md:bg-zinc-950/90 backdrop-blur-2xl border-none md:border border-white/10 w-full h-[100dvh] md:h-[750px] md:max-w-6xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative">
+                            <div className="pointer-events-auto bg-zinc-950 md:bg-zinc-950/90 backdrop-blur-2xl border-none md:border border-white/10 w-full h-dvh md:h-[750px] md:max-w-6xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative">
 
                                 {/* Mobile Full-Screen Gradient Background */}
                                 <div

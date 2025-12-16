@@ -1,5 +1,5 @@
 import { projects } from "@/lib/data";
-import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users } from "lucide-react";
+import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users, Home } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProcessDeck from "@/components/features/projects/ProcessDeck";
@@ -48,10 +48,17 @@ export default async function CaseStudyPage(props: Props) {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:24px_24px] opacity-50" />
 
                 <div className="relative z-10 max-w-5xl mx-auto w-full">
-                    <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors mb-8 text-sm uppercase tracking-widest font-mono group">
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        Back to Project
-                    </Link>
+                    <div className="flex items-center gap-6 mb-8">
+                        <Link href="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
+                            <Home className="w-4 h-4 group-hover:text-accent transition-colors" />
+                            <span>Home</span>
+                        </Link>
+                        <div className="w-px h-4 bg-white/10" />
+                        <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                            <span>Back to Project</span>
+                        </Link>
+                    </div>
 
                     <h3 className="text-accent text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4">UX Case Study</h3>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-black leading-tight mb-8">
