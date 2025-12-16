@@ -104,8 +104,8 @@ export const projects: Project[] = [
                 "Mobile-responsive interface"
             ]
         },
-        liveUrl: "https://workout-planner-demo.vercel.app",
-        repoUrl: "https://github.com/subhadeepmistri/workout-planner"
+        liveUrl: "https://workout-planner-sexie-spidey.netlify.app/",
+        repoUrl: "https://github.com/subahdeepmistri/WorkOut-Planner"
     },
     {
         slug: "relationship-countdown",
