@@ -179,9 +179,9 @@ export default async function ProjectPage(props: Props) {
             </div>
             {/* Floating Home Button */}
             <Link
-                href="/#projects"
+                href="/"
                 className="fixed bottom-8 right-8 z-50 p-4 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300"
-                aria-label="Back to Projects"
+                aria-label="Back to Home"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
