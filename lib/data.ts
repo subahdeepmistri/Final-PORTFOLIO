@@ -82,8 +82,8 @@ export const projects: Project[] = [
                 "Interactive cooking timer"
             ]
         },
-        liveUrl: "https://recipe-page-demo.vercel.app",
-        repoUrl: "https://github.com/subhadeepmistri/frontend-outcome-recipe"
+        liveUrl: "https://restaurant-food-landing-page.netlify.app/",
+        repoUrl: "https://github.com/subahdeepmistri/restaurant-food-landing-page"
     },
     {
         slug: "workout-planner",
