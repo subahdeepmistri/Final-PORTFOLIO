@@ -209,7 +209,7 @@ export default function ProcessDeck() {
 
     return (
         <>
-            {/* TRIGGER BUTTON (Responsive) - REDESIGNED FOR VISIBILITY */}
+            {/* TRIGGER BUTTON (Responsive) - HIGH CONTRAST NEON CTA */}
             <motion.button
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -218,33 +218,34 @@ export default function ProcessDeck() {
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 group origin-bottom-right"
             >
-                {/* Pulsing Glow Layer */}
-                <span className="absolute inset-0 rounded-full bg-accent blur-[20px] opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-pulse" />
+                {/* Button Container - BRIGHT NEON GRADIENT */}
+                <div className="relative flex items-center gap-3 pl-2 pr-6 py-2 rounded-full shadow-[0_10px_40px_-10px_rgba(var(--accent-rgb),0.6)] group-hover:shadow-[0_20px_60px_-10px_rgba(var(--accent-rgb),0.9)] transition-all duration-300 overflow-hidden ring-1 ring-white/50">
 
-                {/* Button Container */}
-                <div className="relative flex items-center gap-4 pl-2 pr-6 py-2 bg-zinc-900 border border-white/20 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] group-hover:shadow-[0_20px_40px_-10px_rgba(var(--accent-rgb),0.3)] transition-all duration-300 overflow-hidden">
+                    {/* Animated Gradient Background (Lighter/Brighter for Dark Text) */}
+                    <div className="absolute inset-0 bg-linear-to-r from-cyan-300 via-blue-300 to-purple-300 bg-[length:200%_100%] animate-[shimmer_3s_infinite_linear]" />
 
-                    {/* Glassy Sheen */}
-                    <div className="absolute inset-x-0 top-0 h-[1px] bg-white/20" />
-                    <div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Glassy Surface */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent mix-blend-overlay" />
 
-                    {/* Solid Icon Box */}
-                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white shadow-lg shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        <Layers className="w-6 h-6" />
+                    {/* Icon Box - BLACK for Maximum Contrast against bright bg */}
+                    <div className="relative z-10 w-11 h-11 rounded-full bg-zinc-950 flex items-center justify-center text-white shadow-lg shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                        <Layers className="w-5 h-5 ml-0.5" />
                     </div>
 
-                    {/* Text Label */}
-                    <div className="flex flex-col items-start gap-0.5 min-w-[100px]">
-                        <span className="text-[10px] uppercase tracking-widest font-bold text-white/50 group-hover:text-white/70 transition-colors">
-                            Explore
+                    {/* Text Label - DARK for readability on neon */}
+                    <div className="relative z-10 flex flex-col items-start gap-0.5 min-w-[100px]">
+                        <span className="text-[10px] uppercase tracking-widest font-black text-zinc-800/80 group-hover:text-zinc-900 transition-colors">
+                            Case Study
                         </span>
-                        <span className="text-base font-bold text-white leading-none whitespace-nowrap">
+                        <span className="text-base font-black text-zinc-900 leading-none whitespace-nowrap drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]">
                             View Process
                         </span>
                     </div>
 
-                    {/* Arrow Hint */}
-                    <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                    {/* Arrow Hint - Dark */}
+                    <span className="relative z-10 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                        <ChevronRight className="w-4 h-4 text-zinc-900" />
+                    </span>
                 </div>
             </motion.button>
 
