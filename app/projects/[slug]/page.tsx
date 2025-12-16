@@ -1,5 +1,5 @@
 import { projects } from "@/lib/data";
-import { ArrowLeft, ExternalLink, Github, Terminal, Figma } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Terminal, Figma, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -76,6 +76,17 @@ export default async function ProjectPage(props: Props) {
                                     <Figma className="w-5 h-5" />
                                     View in Figma
                                 </a>
+                            )}
+
+                            {/* Case Study Button for Design Projects */}
+                            {project.type === 'design' && (
+                                <Link
+                                    href={`/projects/${project.slug}/case-study`}
+                                    className="flex items-center gap-2 px-6 py-3 bg-[#1E1E1E] text-white font-bold rounded-full border border-white/20 hover:bg-white hover:text-black hover:border-white transition-all"
+                                >
+                                    <BookOpen className="w-5 h-5" />
+                                    Read Case Study
+                                </Link>
                             )}
 
                             {/* View Source for Dev Projects */}
