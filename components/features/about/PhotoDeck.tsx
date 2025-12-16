@@ -101,7 +101,7 @@ export default function PhotoDeck() {
                     {cards.map((card, index) => {
                         // Only render the top few cards for performance and visual clarity
                         const isTop = index === cards.length - 1;
-                        const isSecond = index === cards.length - 2;
+
 
                         if (index < cards.length - 2) return null; // Hide cards deep in the stack
 

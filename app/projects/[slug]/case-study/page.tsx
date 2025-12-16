@@ -1,8 +1,7 @@
 import { projects } from "@/lib/data";
-import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users, BookOpen } from "lucide-react";
+import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 
 // Define Page Props
 type Props = {
@@ -251,7 +250,7 @@ export default async function CaseStudyPage(props: Props) {
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">Reflection</h2>
                     <p className="text-zinc-400 max-w-2xl mx-auto leading-relaxed">
                         This project challenged me to think deeply about user intent and visual hierarchy.
-                        By prioritizing the user's needs and iterating on feedback, I was able to deliver a
+                        By prioritizing the user&apos;s needs and iterating on feedback, I was able to deliver a
                         solution that is not only visually stunning but also highly functional.
                     </p>
                 </section>

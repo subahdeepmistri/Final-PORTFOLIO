@@ -18,7 +18,6 @@ export default function MobileNavbar() {
     return (
         <>
             {/* Hamburger Button (Mobile Only) */}
-            {/* Hamburger Button (Mobile Only) */}
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed top-6 right-6 z-50 md:hidden p-3 bg-black/50 backdrop-blur-md border border-white/10 rounded-full text-white shadow-lg hover:bg-white/10 active:scale-95 transition-all duration-300"

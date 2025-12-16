@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Figma } from "lucide-react";
 import { Project } from "@/lib/data";
 import ProjectLoader from "@/components/ui/ProjectLoader";
