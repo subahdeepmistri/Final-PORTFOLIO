@@ -59,9 +59,8 @@ export const projects: Project[] = [
                 "Seamless offline mode"
             ]
         },
-        figmaUrl: "https://www.figma.com/community/file/123456789",
-        liveUrl: "https://music-app-demo.vercel.app",
-        repoUrl: "https://github.com/subhadeepmistri/music-player-app" // Keeping repo for hybrid projects
+        liveUrl: "https://spidey-player.netlify.app/",
+        repoUrl: "https://github.com/subahdeepmistri/Spidey-Player"
     },
     {
         slug: "recipe-page",
