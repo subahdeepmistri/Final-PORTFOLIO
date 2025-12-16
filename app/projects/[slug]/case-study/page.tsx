@@ -6,7 +6,7 @@ import ProcessDeck from "@/components/features/projects/ProcessDeck";
 
 // Define Page Props
 type Props = {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 };
 
 // Generate Static Params
@@ -16,8 +16,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function CaseStudyPage(props: Props) {
-    const params = await props.params;
+export default function CaseStudyPage({ params }: Props) {
     const project = projects.find((p) => p.slug === params.slug);
 
     if (!project) {
@@ -50,6 +49,7 @@ export default async function CaseStudyPage(props: Props) {
                 <div className="relative z-10 max-w-5xl mx-auto w-full">
                     <div className="flex items-center gap-6 mb-8">
                         <Link href="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
+                            <HomeIcon className="w-4 h-4 group-hover:text-accent transition-colors" />
                             <span>Home</span>
                         </Link>
                         <div className="w-px h-4 bg-white/10" />
