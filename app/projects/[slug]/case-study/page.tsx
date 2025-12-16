@@ -1,5 +1,5 @@
 import { projects } from "@/lib/data";
-import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users, Home } from "lucide-react";
+import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users, Home as HomeIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProcessDeck from "@/components/features/projects/ProcessDeck";
@@ -50,7 +50,7 @@ export default async function CaseStudyPage(props: Props) {
                 <div className="relative z-10 max-w-5xl mx-auto w-full">
                     <div className="flex items-center gap-6 mb-8">
                         <Link href="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
-                            <Home className="w-4 h-4 group-hover:text-accent transition-colors" />
+                            <HomeIcon className="w-4 h-4 group-hover:text-accent transition-colors" />
                             <span>Home</span>
                         </Link>
                         <div className="w-px h-4 bg-white/10" />
