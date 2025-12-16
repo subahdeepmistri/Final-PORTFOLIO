@@ -209,27 +209,42 @@ export default function ProcessDeck() {
 
     return (
         <>
-            {/* TRIGGER BUTTON (Responsive) */}
+            {/* TRIGGER BUTTON (Responsive) - REDESIGNED FOR VISIBILITY */}
             <motion.button
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                whileHover={{ scale: 1.05, y: -4 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-black/80 backdrop-blur-xl border border-white/10 text-white rounded-full shadow-2xl group overflow-hidden"
+                className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 group origin-bottom-right"
             >
-                <div className="absolute inset-x-0 bottom-0 h-px md:h-[2px] bg-linear-to-r from-transparent via-accent to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+                {/* Pulsing Glow Layer */}
+                <span className="absolute inset-0 rounded-full bg-accent blur-[20px] opacity-20 group-hover:opacity-40 transition-opacity duration-500 animate-pulse" />
 
-                {/* Container for content */}
-                <div className="flex items-center gap-3 px-4 py-3 md:px-6 md:py-4 relative z-10">
-                    <div className="p-1.5 md:p-2 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors shrink-0">
-                        <Layers className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+                {/* Button Container */}
+                <div className="relative flex items-center gap-4 pl-2 pr-6 py-2 bg-zinc-900 border border-white/20 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] group-hover:shadow-[0_20px_40px_-10px_rgba(var(--accent-rgb),0.3)] transition-all duration-300 overflow-hidden">
+
+                    {/* Glassy Sheen */}
+                    <div className="absolute inset-x-0 top-0 h-[1px] bg-white/20" />
+                    <div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                    {/* Solid Icon Box */}
+                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white shadow-lg shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <Layers className="w-6 h-6" />
                     </div>
 
-                    <div className="text-left flex flex-col justify-center">
-                        <span className="hidden md:block text-[10px] uppercase tracking-widest text-zinc-400 font-bold leading-none mb-1">Case Study</span>
-                        <span className="text-sm md:text-base font-bold leading-none">View Process</span>
+                    {/* Text Label */}
+                    <div className="flex flex-col items-start gap-0.5 min-w-[100px]">
+                        <span className="text-[10px] uppercase tracking-widest font-bold text-white/50 group-hover:text-white/70 transition-colors">
+                            Explore
+                        </span>
+                        <span className="text-base font-bold text-white leading-none whitespace-nowrap">
+                            View Process
+                        </span>
                     </div>
+
+                    {/* Arrow Hint */}
+                    <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </div>
             </motion.button>
 
