@@ -4,9 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProcessDeck from "@/components/features/projects/ProcessDeck";
 
-// Define Page Props
+// Define Page Props (Next.js 15 requires params to be a Promise)
 type Props = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 };
 
 // Generate Static Params
@@ -16,8 +16,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function CaseStudyPage({ params }: Props) {
-    const project = projects.find((p) => p.slug === params.slug);
+export default async function CaseStudyPage({ params }: Props) {
+    const { slug } = await params;
+    const project = projects.find((p) => p.slug === slug);
 
     if (!project) {
         notFound();
