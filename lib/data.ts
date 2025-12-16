@@ -37,8 +37,8 @@ export const projects: Project[] = [
                 "Responsive grid layouts"
             ]
         },
-        liveUrl: "https://portfolio-v2-demo.vercel.app",
-        repoUrl: "https://github.com/subhadeepmistri/portfolio-v2"
+        liveUrl: "https://portfolio-final99.netlify.app/",
+        repoUrl: "https://github.com/subahdeepmistri/Final-PORTFOLIO"
     },
     {
         slug: "music-player-app",
