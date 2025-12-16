@@ -2,6 +2,7 @@ import { projects } from "@/lib/data";
 import { ArrowLeft, Check, ChevronRight, Layers, LayoutTemplate, Lightbulb, Palette, Users } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ProcessDeck from "@/components/features/projects/ProcessDeck";
 
 // Define Page Props
 type Props = {
@@ -257,13 +258,15 @@ export default async function CaseStudyPage(props: Props) {
 
             </div>
 
-            {/* Footer Navigation */}
             <div className="border-t border-white/10 py-12 text-center bg-black">
                 <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-lg">
                     <span>Back to Project Overview</span>
                     <ChevronRight className="w-4 h-4" />
                 </Link>
             </div>
+
+            {/* Design Process Overlay */}
+            <ProcessDeck />
         </main>
     );
 }
