@@ -39,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth bg-black" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={cn(
           "min-h-screen bg-background font-sans text-foreground antialiased overflow-x-hidden",
           outfit.variable,
