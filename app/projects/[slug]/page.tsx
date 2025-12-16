@@ -51,40 +51,40 @@ export default async function ProjectPage(props: Props) {
                         </div>
 
                         {/* Deployment Actions */}
-                        {/* Deployment Actions */}
-                        <div className="flex gap-4 mb-2">
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap items-center gap-4 mb-2">
                             {project.liveUrl && (
                                 <a
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent transition-colors"
+                                    className="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors whitespace-nowrap shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                                 >
                                     <ExternalLink className="w-5 h-5" />
                                     Live Preview
                                 </a>
                             )}
 
-                            {/* Figma Button for Design Projects */}
+                            {/* Figma Button */}
                             {project.figmaUrl && (
                                 <a
                                     href={project.figmaUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 bg-[#1E1E1E] text-white font-bold rounded-full border border-white/20 hover:bg-[#F24E1E] hover:border-[#F24E1E] transition-all"
+                                    className="flex items-center gap-2 px-6 py-3 bg-zinc-900 text-zinc-300 font-bold rounded-full border border-white/10 hover:bg-zinc-800 hover:text-white hover:border-white/30 transition-all whitespace-nowrap"
                                 >
                                     <Figma className="w-5 h-5" />
                                     View in Figma
                                 </a>
                             )}
 
-                            {/* Case Study Button for Design Projects */}
+                            {/* Case Study Button (Premium) */}
                             {project.type === 'design' && (
                                 <Link
                                     href={`/projects/${project.slug}/case-study`}
-                                    className="flex items-center gap-2 px-6 py-3 bg-[#1E1E1E] text-white font-bold rounded-full border border-white/20 hover:bg-white hover:text-black hover:border-white transition-all"
+                                    className="flex items-center gap-2 px-6 py-3 bg-linear-to-r from-accent/10 to-transparent text-accent font-bold rounded-full border border-accent/20 hover:bg-accent hover:text-black hover:border-accent hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.5)] transition-all whitespace-nowrap group/case"
                                 >
-                                    <BookOpen className="w-5 h-5" />
+                                    <BookOpen className="w-5 h-5 group-hover/case:scale-110 transition-transform" />
                                     Read Case Study
                                 </Link>
                             )}
@@ -95,7 +95,7 @@ export default async function ProjectPage(props: Props) {
                                     href={project.repoUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 bg-white/10 text-white font-bold rounded-full border border-white/20 hover:bg-white hover:text-black transition-all"
+                                    className="flex items-center gap-2 px-6 py-3 bg-zinc-900 text-zinc-300 font-bold rounded-full border border-white/10 hover:bg-zinc-800 hover:text-white hover:border-white/30 transition-all whitespace-nowrap"
                                 >
                                     <Github className="w-5 h-5" />
                                     View Source
