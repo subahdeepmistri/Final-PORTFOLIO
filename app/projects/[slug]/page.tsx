@@ -35,7 +35,7 @@ export default async function ProjectPage(props: Props) {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-7xl mx-auto w-full">
-                    <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8 group">
+                    <Link href="/#projects" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8 group">
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                         Back to Archives
                     </Link>
@@ -179,9 +179,9 @@ export default async function ProjectPage(props: Props) {
             </div>
             {/* Floating Home Button */}
             <Link
-                href="/"
+                href="/#projects"
                 className="fixed bottom-8 right-8 z-50 p-4 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300"
-                aria-label="Back to Home"
+                aria-label="Back to Projects"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
