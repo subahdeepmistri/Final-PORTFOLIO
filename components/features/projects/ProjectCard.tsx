@@ -113,15 +113,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                                     </a>
                                 )}
 
-                                {/* Read Case Study Button aka "The Button" */}
-                                <Link
-                                    href={`/projects/${project.slug}`}
-                                    onClick={handleCaseStudyNav}
-                                    className="flex items-center gap-1.5 px-3 py-2 bg-accent/10 text-accent text-[10px] md:text-xs font-bold rounded-full border border-accent/20 hover:bg-accent hover:text-black transition-colors ml-auto"
-                                >
-                                    <BookOpen className="w-3 h-3" />
-                                    {project.type === 'design' ? 'Case Study' : 'Details'}
-                                </Link>
+                                {/* Read Case Study Button - DESIGN ONLY */}
+                                {project.type === 'design' && (
+                                    <Link
+                                        href={`/projects/${project.slug}`}
+                                        onClick={handleCaseStudyNav}
+                                        className="flex items-center gap-1.5 px-3 py-2 bg-accent/10 text-accent text-[10px] md:text-xs font-bold rounded-full border border-accent/20 hover:bg-accent hover:text-black transition-colors ml-auto"
+                                    >
+                                        <BookOpen className="w-3 h-3" />
+                                        Case Study
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

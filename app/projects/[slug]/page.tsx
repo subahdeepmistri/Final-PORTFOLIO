@@ -25,6 +25,12 @@ export default async function ProjectPage({ params }: Props) {
         return null;
     }
 
+    // Restrict access: Only DESIGN projects have a Case Study page
+    if (project.type !== 'design') {
+        notFound();
+        return null;
+    }
+
     // Dummy Data for Structure
     const painPoints = [
         { title: "Complexity", desc: "Users found existing solutions too complex to navigate." },

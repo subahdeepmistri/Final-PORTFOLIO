@@ -1,9 +1,38 @@
 "use client";
 
+"use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Instagram, Linkedin, Mail, MessageCircle, Phone, Send, Download, FileText } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, MessageCircle, Phone, Send, Download, FileText, CheckCircle, Loader2 } from "lucide-react";
 
 export default function Contact() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const formData = new FormData(e.currentTarget);
+
+        try {
+            await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData as any).toString(),
+            });
+            setIsSuccess(true);
+            (e.target as HTMLFormElement).reset();
+            // Reset success message after 5 seconds
+            setTimeout(() => setIsSuccess(false), 5000);
+        } catch (error) {
+            console.error("Submission error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section id="contact" className="min-h-[100dvh] flex flex-col justify-center py-24 px-4 md:px-12 bg-black relative overflow-hidden">
             {/* Abstract Background Element */}
@@ -27,13 +56,26 @@ export default function Contact() {
 
                     {/* LEFT COLUMN: CONTACT FORM */}
                     <div className="flex flex-col gap-8">
-                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                        <form
+                            className="space-y-6"
+                            onSubmit={handleSubmit}
+                            name="contact"
+                            data-netlify="true"
+                            netlify-honeypot="bot-field"
+                        >
+                            <input type="hidden" name="form-name" value="contact" />
+                            <p className="hidden">
+                                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                            </p>
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Name</label>
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
+                                        required
                                         placeholder="John Doe"
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
                                     />
@@ -43,6 +85,8 @@ export default function Contact() {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="email"
+                                        required
                                         placeholder="john@example.com"
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
                                     />
@@ -53,15 +97,35 @@ export default function Contact() {
                                 <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Message</label>
                                 <textarea
                                     id="message"
+                                    name="message"
+                                    required
                                     rows={4}
                                     placeholder="Tell me about your project..."
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono resize-none"
                                 />
                             </div>
 
-                            <button className="group w-full md:w-auto bg-white text-black font-black uppercase tracking-widest py-4 px-8 rounded-full flex items-center justify-center gap-3 hover:bg-accent transition-colors">
-                                <span>Send Transmission</span>
-                                <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            <button
+                                type="submit"
+                                disabled={isSubmitting || isSuccess}
+                                className={`group w-full md:w-auto font-black uppercase tracking-widest py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all ${isSuccess ? "bg-green-500 text-black cursor-default" : "bg-white text-black hover:bg-accent"}`}
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <span>Transmiting...</span>
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                    </>
+                                ) : isSuccess ? (
+                                    <>
+                                        <span>Transmission Sent</span>
+                                        <CheckCircle className="w-4 h-4" />
+                                    </>
+                                ) : (
+                                    <>
+                                        <span>Send Transmission</span>
+                                        <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

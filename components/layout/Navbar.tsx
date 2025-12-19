@@ -39,11 +39,41 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                {/* LOGO / NAME */}
-                <Link href="/" className="group relative z-50">
-                    <span className="text-xl md:text-2xl font-heading font-black text-white tracking-widest group-hover:text-zinc-200 transition-colors">
-                        SM<span className="text-accent">.</span>
-                    </span>
+                {/* LOGO / NAME - Premium Animation */}
+                <Link href="/" className="group relative z-50 overflow-hidden inline-block">
+                    <motion.div
+                        className="flex items-baseline"
+                        whileHover={{ scale: 1.04 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <motion.span
+                            className="text-xl md:text-2xl font-heading font-black text-white tracking-widest group-hover:text-zinc-200 transition-colors"
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                            SM
+                        </motion.span>
+                        <motion.span
+                            className="text-xl md:text-2xl font-heading font-black text-accent inline-block origin-bottom"
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+                        >
+                            <motion.span
+                                className="inline-block"
+                                animate={{ scale: [1, 1.12, 1] }}
+                                transition={{
+                                    duration: 3.5,
+                                    ease: "easeInOut",
+                                    repeat: Infinity,
+                                }}
+                                style={{ filter: "drop-shadow(0 0 2px rgba(var(--accent-rgb), 0.5))" }}
+                            >
+                                .
+                            </motion.span>
+                        </motion.span>
+                    </motion.div>
                 </Link>
 
                 {/* DESKTOP NAV & ICONS */}
