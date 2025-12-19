@@ -6,9 +6,10 @@ import { projects } from "@/lib/data";
 import NextImage from "next/image";
 import ProjectCard from "./ProjectCard";
 import ScrollSticker from "@/components/ui/ScrollSticker";
+import { StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/animations";
 
 export default function Projects() {
-    const [activeTab, setActiveTab] = useState<"dev" | "design">("dev");
+    const [activeTab, setActiveTab] = useState<"dev" | "design">("design");
 
     // Cleaner filter logic based on strict 'type' assigned in data.ts
     const displayProjects = projects.filter(p => p.type === activeTab);
@@ -36,21 +37,37 @@ export default function Projects() {
                     </h3>
                 </div>
 
-                <div className="flex gap-4 p-1 bg-white/5 rounded-full backdrop-blur-md border border-white/10">
-                    <button
-                        onClick={() => setActiveTab("dev")}
-                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === "dev" ? "bg-white text-black shadow-lg" : "text-zinc-400 hover:text-white"
-                            }`}
-                    >
-                        Frontend Engineering
-                    </button>
-                    <button
+                <div className="flex p-1 bg-zinc-950/50 rounded-full backdrop-blur-xl border border-white/10 relative">
+                    <motion.button
+                        whileTap={{ scale: 0.95 }}
                         onClick={() => setActiveTab("design")}
-                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === "design" ? "bg-white text-black shadow-lg" : "text-zinc-400 hover:text-white"
+                        className={`relative z-10 px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-colors duration-300 w-full md:w-auto min-w-[140px] text-center ${activeTab === "design" ? "text-black mix-blend-normal" : "text-zinc-500 hover:text-white"
                             }`}
                     >
-                        UI/UX Design
-                    </button>
+                        <span className="relative z-20">UI/UX Design</span>
+                        {activeTab === "design" && (
+                            <motion.div
+                                layoutId="activeTabPill"
+                                className="absolute inset-0 bg-white rounded-full shadow-lg z-10"
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                        )}
+                    </motion.button>
+                    <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setActiveTab("dev")}
+                        className={`relative z-10 px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-colors duration-300 w-full md:w-auto min-w-[170px] text-center ${activeTab === "dev" ? "text-black mix-blend-normal" : "text-zinc-500 hover:text-white"
+                            }`}
+                    >
+                        <span className="relative z-20">Frontend Engineering</span>
+                        {activeTab === "dev" && (
+                            <motion.div
+                                layoutId="activeTabPill"
+                                className="absolute inset-0 bg-white rounded-full shadow-lg z-10"
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                        )}
+                    </motion.button>
                 </div>
             </div>
 
@@ -59,23 +76,25 @@ export default function Projects() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
                     >
-                        {displayProjects.map((project, idx) => (
-                            <motion.div
-                                key={project.slug}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1, duration: 0.6 }}
-                            >
-                                <ProjectCard project={project} />
-                            </motion.div>
-                        ))}
+                        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                            {displayProjects.map((project) => (
+                                <StaggerItem key={project.slug}>
+                                    <ScaleIn
+                                        delay={0}
+                                        duration={0.4}
+                                        whileHover={{ y: -8, scale: 1.02 }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                    >
+                                        <ProjectCard project={project} />
+                                    </ScaleIn>
+                                </StaggerItem>
+                            ))}
+                        </StaggerContainer>
                     </motion.div>
                 </AnimatePresence>
             </div>

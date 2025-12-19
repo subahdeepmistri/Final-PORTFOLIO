@@ -60,7 +60,8 @@ export const projects: Project[] = [
             ]
         },
         liveUrl: "https://spidey-player.netlify.app/",
-        repoUrl: "https://github.com/subahdeepmistri/Spidey-Player"
+        // repoUrl: "https://github.com/subahdeepmistri/Spidey-Player", // Swapped for Figma as requested
+        figmaUrl: "https://www.figma.com/file/music-player-app"
     },
     {
         slug: "recipe-page",

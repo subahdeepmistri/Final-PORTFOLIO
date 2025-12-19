@@ -125,29 +125,53 @@ export default function Contact() {
 
                 {/* Social Grid - Mobile: 2 cols, Desktop: Flex row */}
                 <div className="grid grid-cols-2 md:flex md:flex-wrap gap-4 md:gap-6">
-                    <a href="https://github.com/subahdeepmistri" target="_blank" rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-white text-black font-bold text-sm md:text-lg hover:bg-zinc-200 hover:scale-[1.02] transition-all">
+                    <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href="https://github.com/subahdeepmistri"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-white text-black font-bold text-sm md:text-lg hover:bg-zinc-200 transition-colors"
+                    >
                         <Github className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                         <span>GitHub</span>
-                    </a>
+                    </motion.a>
 
-                    <a href="https://linkedin.com/in/subhadeepmistri" target="_blank" rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#0077b5] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#0077b5]/30 transition-all">
+                    <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href="https://linkedin.com/in/subhadeepmistri"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#0077b5] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#0077b5]/30 transition-all"
+                    >
                         <Linkedin className="w-5 h-5 md:w-5 md:h-5" />
                         <span>LinkedIn</span>
-                    </a>
+                    </motion.a>
 
-                    <a href="https://www.instagram.com/roronoa._.zorox/" target="_blank" rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-linear-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#fd1d1d]/30 transition-all">
+                    <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href="https://www.instagram.com/roronoa._.zorox/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-linear-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#fd1d1d]/30 transition-all"
+                    >
                         <Instagram className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
                         <span>Instagram</span>
-                    </a>
+                    </motion.a>
 
-                    <a href="https://wa.me/918250518317" target="_blank" rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#25D366] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#25D366]/30 transition-all">
+                    <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href="https://wa.me/918250518317"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#25D366] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#25D366]/30 transition-all"
+                    >
                         <MessageCircle className="w-5 h-5 md:w-5 md:h-5" />
                         <span>WhatsApp</span>
-                    </a>
+                    </motion.a>
                 </div>
             </div>
 

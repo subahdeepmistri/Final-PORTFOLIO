@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth bg-black" suppressHydrationWarning>
+    <html lang="en" className="bg-black" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={cn(

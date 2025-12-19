@@ -201,11 +201,18 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
 // 3. MAIN COMPONENT
 // --------------------------------------------------------------------------
 
-export default function ProcessDeck() {
+interface ProcessDeckProps {
+    className?: string;
+    triggerPosition?: 'fixed' | 'inline';
+}
+
+export default function ProcessDeck({ className, triggerPosition = 'fixed' }: ProcessDeckProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<number>(0);
 
     const activePhase = caseStudyData[activeTab];
+
+    const isFixed = triggerPosition === 'fixed';
 
     return (
         <>
@@ -216,7 +223,11 @@ export default function ProcessDeck() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 group origin-bottom-right"
+                className={cn(
+                    "z-50 group origin-bottom-right",
+                    isFixed ? "fixed bottom-6 right-6 md:bottom-10 md:right-10" : "relative",
+                    className
+                )}
             >
                 {/* Button Container - BRIGHT NEON GRADIENT */}
                 <div className="relative flex items-center gap-3 pl-2 pr-6 py-2 rounded-full shadow-[0_10px_40px_-10px_rgba(var(--accent-rgb),0.6)] group-hover:shadow-[0_20px_60px_-10px_rgba(var(--accent-rgb),0.9)] transition-all duration-300 overflow-hidden ring-1 ring-white/50">

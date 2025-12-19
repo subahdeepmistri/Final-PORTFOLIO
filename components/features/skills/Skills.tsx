@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Code2, Palette, Terminal } from "lucide-react";
 import Image from "next/image";
 import ScrollSticker from "@/components/ui/ScrollSticker";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 
 const skills = [
     {
@@ -30,26 +31,17 @@ export default function Skills() {
     return (
         <section id="skills" className="pt-20 pb-32 md:pt-24 md:pb-48 px-6 md:px-12 bg-black relative">
             <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-20 text-center"
-                >
+                <FadeIn className="mb-20 text-center">
                     <h2 className="text-sm tracking-[0.3em] text-accent uppercase mb-4">Capabilities</h2>
                     <h3 className="text-4xl md:text-6xl font-heading font-bold text-white">
                         Technical <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-purple-600">Arsenal</span>
                     </h3>
-                </motion.div>
+                </FadeIn>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {skills.map((skill, idx) => (
-                        <motion.div
+                        <StaggerItem
                             key={idx}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.2 }}
                             className="group p-6 md:p-8 rounded-3xl bg-zinc-900 border border-white/10 hover:border-accent/40 transition-all duration-500 relative overflow-hidden h-full flex flex-col justify-between"
                         >
                             {/* Background Image with Zoom Effect */}
@@ -87,9 +79,9 @@ export default function Skills() {
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerContainer>
             </div>
 
             {/* Next Section Indicator */}
