@@ -172,3 +172,33 @@ export const projects: Project[] = [
         figmaUrl: "https://www.figma.com/file/travel-app"
     }
 ];
+
+export type SkillIconName = "code" | "palette" | "terminal";
+
+export interface SkillCategory {
+    category: string;
+    icon: SkillIconName;
+    items: string[];
+    image: string;
+}
+
+export const skills: SkillCategory[] = [
+    {
+        category: "Frontend Engineering",
+        icon: "code",
+        items: ["React", "Tailwind CSS", "TypeScript", "HTML5/CSS3", "JavaScript"],
+        image: "/skills/bg-frontend.png"
+    },
+    {
+        category: "UI/UX Design",
+        icon: "palette",
+        items: ["Figma", "Wireframing", "Prototyping", "User Research", "Adobe Suite", "Responsive Design"],
+        image: "/skills/bg-design.png"
+    },
+    {
+        category: "Tools & Workflow",
+        icon: "terminal",
+        items: ["Git/GitHub", "GitLab", "VS Code", "Canva", "Vercel", "Performance Tuning"],
+        image: "/skills/bg-tools.png"
+    }
+];

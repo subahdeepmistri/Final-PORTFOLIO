@@ -76,7 +76,7 @@ export default function Contact() {
                                         id="name"
                                         name="name"
                                         required
-                                        placeholder="John Doe"
+                                        placeholder="Roronoya Zoro"
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
                                     />
                                 </div>
@@ -87,7 +87,17 @@ export default function Contact() {
                                         id="email"
                                         name="email"
                                         required
-                                        placeholder="john@example.com"
+                                        placeholder="Zoro@example.com"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
+                                    />
+                                </div>
+                                <div className="space-y-2 md:col-span-2">
+                                    <label htmlFor="phone" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Phone Number</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="+91 8254738402"
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
                                     />
                                 </div>
@@ -146,7 +156,7 @@ export default function Contact() {
                                     <div className="p-2 bg-black rounded-lg text-amber-400">
                                         <FileText className="w-6 h-6" />
                                     </div>
-                                    <span className="text-black/60 font-black text-xs uppercase tracking-widest">Construct 01</span>
+                                    <span className="text-black/60 font-black text-xs uppercase tracking-widest">Subhadeep Mistri</span>
                                 </div>
                                 <h3 className="text-3xl md:text-4xl font-heading font-black text-black leading-none">
                                     Download <br /> Resume
