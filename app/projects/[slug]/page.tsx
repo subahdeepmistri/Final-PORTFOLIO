@@ -43,9 +43,9 @@ export default async function ProjectPage({ params }: Props) {
 
                 <div className="relative z-10 max-w-5xl mx-auto w-full">
                     <div className="flex items-center gap-6 mb-8">
-                        <Link href="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
-                            <HomeIcon className="w-4 h-4 group-hover:text-accent transition-colors" />
-                            <span>Home</span>
+                        <Link href="/#projects" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest font-mono group">
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                            <span>Back</span>
                         </Link>
                         {/* Removed circular "Back to Project" link */}
                     </div>
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: Props) {
                     </p>
 
                     {/* Hero Action Buttons - Conditional based on Project Type */}
-                    <div className="flex flex-wrap items-center gap-4 mt-2">
+                    <div className="flex flex-wrap items-center gap-6 mt-2">
                         {project.type === 'design' ? (
                             // DESIGN PROJECTS: Show Process Deck Trigger Here
                             <ProcessDeck triggerPosition="inline" />

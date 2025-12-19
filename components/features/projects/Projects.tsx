@@ -71,8 +71,8 @@ export default function Projects() {
                 </div>
             </div>
 
-            {/* Desktop Grid View */}
-            <div className="max-w-7xl mx-auto min-h-[600px] hidden md:block">
+            {/* Unified Grid View (Mobile: 1 col, Desktop: 2 cols) */}
+            <div className="max-w-7xl mx-auto min-h-[600px] relative z-10">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
@@ -89,6 +89,7 @@ export default function Projects() {
                                         duration={0.4}
                                         whileHover={{ y: -8, scale: 1.02 }}
                                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                        className="h-full"
                                     >
                                         <ProjectCard project={project} />
                                     </ScaleIn>
@@ -97,45 +98,6 @@ export default function Projects() {
                         </StaggerContainer>
                     </motion.div>
                 </AnimatePresence>
-            </div>
-
-            {/* Mobile Carousel View with Animations */}
-            <div className="md:hidden relative w-full">
-                {/* Visual Fade Mask */}
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-black to-transparent pointer-events-none z-20" />
-
-                {/* Animated Track */}
-                <motion.div
-                    initial={{ x: 0 }}
-                    whileInView={{ x: [0, -60, 0] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ delay: 0.8, duration: 1.5, ease: "easeInOut" }}
-                    className="w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-6 pb-2 no-scrollbar"
-                >
-                    {displayProjects.map((project) => (
-                        <div key={project.slug} className="min-w-[85vw] snap-center">
-                            <ProjectCard project={project} />
-                        </div>
-                    ))}
-                    {/* Spacer for last item visibility against mask */}
-                    <div className="min-w-[5vw] shrink-0" />
-                </motion.div>
-
-                {/* Subtle Swipe Indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 2, duration: 1 }}
-                    className="flex justify-center items-center gap-2 mt-4 text-zinc-500 text-xs font-medium uppercase tracking-widest"
-                >
-                    <span>Swipe to explore</span>
-                    <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
-                    >
-                        →
-                    </motion.div>
-                </motion.div>
             </div>
 
             {/* Next Section Indicator */}

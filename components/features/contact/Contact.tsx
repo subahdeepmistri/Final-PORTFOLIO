@@ -1,181 +1,141 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Instagram, Linkedin, Mail, MessageCircle, Phone } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, MessageCircle, Phone, Send, Download, FileText } from "lucide-react";
 
 export default function Contact() {
     return (
-        <section id="contact" className="min-h-[100dvh] flex flex-col justify-between pt-20 pb-12 md:py-24 px-4 md:px-12 bg-black relative overflow-hidden">
+        <section id="contact" className="min-h-[100dvh] flex flex-col justify-center py-24 px-4 md:px-12 bg-black relative overflow-hidden">
             {/* Abstract Background Element */}
             <div className="absolute bottom-0 left-0 w-full h-[500px] bg-linear-to-t from-zinc-900 to-transparent pointer-events-none" />
 
-            <div className="max-w-5xl mx-auto w-full grow flex flex-col justify-center">
+            <div className="max-w-7xl mx-auto w-full relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-12 md:mb-16"
+                    className="mb-12 md:mb-16 text-center md:text-left"
                 >
                     <h2 className="text-sm tracking-[0.3em] text-accent uppercase mb-4">Connection</h2>
-                    <h3 className="text-4xl sm:text-5xl md:text-8xl font-heading font-black text-white mb-6 md:mb-8">
+                    <h3 className="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-white mb-4">
                         Let&apos;s Build <br />
                         <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-400 to-zinc-600">The Future.</span>
                     </h3>
-                    <p className="text-zinc-400 max-w-xl text-lg font-light">
-                        Open for collaborations, freelance projects, and full-time opportunities.
-                        Ready to translate your vision into a digital masterpiece?
-                    </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
-                    {/* Email Card - Ultra Compact & Centered */}
-                    <a href="mailto:subhadeepmistri1990@gmail.com" className="group relative overflow-hidden rounded-3xl p-4 md:px-5 md:py-4 bg-zinc-900/50 border border-white/5 hover:bg-zinc-800 transition-all duration-300 flex flex-col justify-center">
-                        <div className="absolute inset-0 bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
 
-                        <div className="relative z-10 flex items-center gap-3 md:gap-4">
-                            <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 group-hover:bg-indigo-500 flex items-center justify-center text-white group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-indigo-500/25 shrink-0">
-                                <Mail className="w-4 h-4 md:w-5 md:h-5" />
-                            </div>
-
-                            <div className="flex-1 min-w-0">
-                                <h3 className="text-sm md:text-base font-bold text-white group-hover:text-indigo-300 transition-colors mb-0.5">Email Me</h3>
-                                <p className="text-xs text-zinc-400 font-medium truncate group-hover:text-white/90 transition-colors">subhadeepmistri1990@gmail.com</p>
-                            </div>
-
-                            <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-indigo-500/50 group-hover:text-indigo-400 transition-all shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            </div>
-                        </div>
-                    </a>
-
-                    {/* Phone Card - Horizontal Grid on Desktop for Minimized Height */}
-                    <div className="relative overflow-hidden rounded-3xl p-4 md:px-5 md:py-4 bg-zinc-900/50 border border-white/5 hover:border-emerald-500/30 transition-all duration-300">
-                        <div className="absolute inset-0 bg-linear-to-r from-emerald-500/5 to-transparent pointer-events-none" />
-
-                        <div className="relative z-10 flex flex-col gap-3 md:gap-0">
-                            <div className="flex items-center gap-3 md:gap-2 mb-1 md:mb-3">
-                                <div className="w-10 h-10 md:w-8 md:h-8 rounded-xl bg-white/5 flex items-center justify-center text-white shadow-lg shrink-0">
-                                    <Phone className="w-4 h-4 md:w-3.5 md:h-3.5" />
+                    {/* LEFT COLUMN: CONTACT FORM */}
+                    <div className="flex flex-col gap-8">
+                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        placeholder="John Doe"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
+                                    />
                                 </div>
-                                <div className="flex items-baseline gap-2">
-                                    <h3 className="text-sm md:text-base font-bold text-white">Call Me</h3>
-                                    <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-wider hidden md:block">Available on WhatsApp</p>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="john@example.com"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono"
+                                    />
                                 </div>
                             </div>
 
-                            <div className="flex flex-col md:grid md:grid-cols-2 gap-2 md:gap-3">
-                                <a href="tel:+918250518317" className="flex items-center justify-between p-2.5 md:p-2 rounded-lg bg-white/5 hover:bg-emerald-500/20 border border-white/5 hover:border-emerald-500/50 transition-all group">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-5 h-5 md:w-4 md:h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] md:text-[9px] font-bold">01</span>
-                                        <span className="text-sm md:text-xs font-mono text-zinc-300 group-hover:text-white transition-colors">+91 82505 18317</span>
-                                    </div>
-                                    <Phone className="w-3 h-3 text-zinc-500 group-hover:text-emerald-400 transition-colors" />
-                                </a>
-                                <a href="tel:+919062187040" className="flex items-center justify-between p-2.5 md:p-2 rounded-lg bg-white/5 hover:bg-emerald-500/20 border border-white/5 hover:border-emerald-500/50 transition-all group">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-5 h-5 md:w-4 md:h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] md:text-[9px] font-bold">02</span>
-                                        <span className="text-sm md:text-xs font-mono text-zinc-300 group-hover:text-white transition-colors">+91 90621 87040</span>
-                                    </div>
-                                    <Phone className="w-3 h-3 text-zinc-500 group-hover:text-emerald-400 transition-colors" />
-                                </a>
+                            <div className="space-y-2">
+                                <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Message</label>
+                                <textarea
+                                    id="message"
+                                    rows={4}
+                                    placeholder="Tell me about your project..."
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-hidden focus:border-accent focus:bg-white/10 transition-all font-mono resize-none"
+                                />
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-                {/* RESUME DOWNLOAD CARD - THE CLASSIFIED DOSSIER */}
-                <motion.a
-                    href="/resume.pdf"
-                    download="Subhadeep_Mistri_Resume.pdf"
-                    className="group relative w-full mb-8 md:mb-12 overflow-hidden rounded-3xl bg-zinc-900/40 border border-white/10 p-6 md:p-8 flex items-center justify-between hover:bg-zinc-900/60 transition-all duration-500"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    {/* Animated Background Scanline Effect */}
-                    <div className="absolute inset-0 bg-repeat bg-[length:4px_4px] opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)' }} />
-                    <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-
-                    <div className="relative z-10 flex items-center gap-6">
-                        {/* Icon Box */}
-                        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-300 group-hover:text-white transition-colors"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" /><polyline points="14 2 14 8 20 8" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" /></svg>
-                        </div>
-
-                        <div className="flex flex-col">
-                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide group-hover:text-accent transition-colors">
-                                Access Dossier
-                            </h3>
-                            <p className="text-zinc-400 text-sm md:text-base font-mono mt-1">
-                                [ Download Full Resume / CV ]
-                            </p>
-                        </div>
+                            <button className="group w-full md:w-auto bg-white text-black font-black uppercase tracking-widest py-4 px-8 rounded-full flex items-center justify-center gap-3 hover:bg-accent transition-colors">
+                                <span>Send Transmission</span>
+                                <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            </button>
+                        </form>
                     </div>
 
-                    {/* Download Indicator */}
-                    <div className="hidden md:flex items-center gap-3 pr-4">
-                        <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest group-hover:text-zinc-300 transition-colors">
-                            PDF_SECURE
-                        </span>
-                        <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                    {/* RIGHT COLUMN: INFO & RESUME */}
+                    <div className="flex flex-col gap-8">
+
+                        {/* PROMINENT RESUME CARD */}
+                        <motion.a
+                            href="/resume.pdf"
+                            download="Subhadeep_Mistri_Resume.pdf"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="relative group w-full overflow-hidden rounded-3xl bg-amber-400 p-8 flex items-center justify-between shadow-xl shadow-amber-400/10 hover:shadow-amber-400/20 transition-all duration-300"
+                        >
+                            <div className="relative z-10 flex flex-col gap-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="p-2 bg-black rounded-lg text-amber-400">
+                                        <FileText className="w-6 h-6" />
+                                    </div>
+                                    <span className="text-black/60 font-black text-xs uppercase tracking-widest">Construct 01</span>
+                                </div>
+                                <h3 className="text-3xl md:text-4xl font-heading font-black text-black leading-none">
+                                    Download <br /> Resume
+                                </h3>
+                            </div>
+
+                            <div className="relative z-10 w-16 h-16 rounded-full bg-black flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                                <Download className="w-8 h-8" />
+                            </div>
+
+                            {/* Texture Overlay */}
+                            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
+                        </motion.a>
+
+                        {/* Contact Details Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Email Card */}
+                            <a href="mailto:subhadeepmistri1990@gmail.com" className="group p-6 rounded-2xl bg-zinc-900 border border-white/5 hover:border-white/20 transition-all overflow-hidden relative">
+                                <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <Mail className="w-6 h-6 text-zinc-400 mb-4 group-hover:text-blue-400 transition-colors" />
+                                <h4 className="font-bold text-white mb-1">Email Me</h4>
+                                <p className="text-xs text-zinc-500 font-mono truncate">subhadeepmistri1990@gmail.com</p>
+                            </a>
+
+                            {/* LinkedIn Card */}
+                            <a href="https://linkedin.com/in/subhadeepmistri" target="_blank" rel="noopener noreferrer" className="group p-6 rounded-2xl bg-[#0077b5] border border-white/5 hover:brightness-110 transition-all">
+                                <Linkedin className="w-6 h-6 text-white mb-4" />
+                                <h4 className="font-bold text-white mb-1">Connect</h4>
+                                <p className="text-xs text-blue-100 font-mono">LinkedIn Profile</p>
+                            </a>
                         </div>
+
+                        {/* Additional Links Row */}
+                        <div className="flex gap-4">
+                            <a href="https://github.com/subahdeepmistri" target="_blank" rel="noopener noreferrer" className="flex-1 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors text-zinc-300 hover:text-white">
+                                <Github className="w-5 h-5" />
+                                <span className="font-bold text-sm">GitHub</span>
+                            </a>
+                            <a href="https://www.instagram.com/roronoa._.zorox/" target="_blank" rel="noopener noreferrer" className="flex-1 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors text-zinc-300 hover:text-white">
+                                <Instagram className="w-5 h-5" />
+                                <span className="font-bold text-sm">Insta</span>
+                            </a>
+                            <a href="https://wa.me/918250518317" target="_blank" rel="noopener noreferrer" className="flex-1 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors text-zinc-300 hover:text-white">
+                                <MessageCircle className="w-5 h-5" />
+                                <span className="font-bold text-sm">Chat</span>
+                            </a>
+                        </div>
+
                     </div>
-                </motion.a>
-
-                {/* Social Grid - Mobile: 2 cols, Desktop: Flex row */}
-                <div className="grid grid-cols-2 md:flex md:flex-wrap gap-4 md:gap-6">
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="https://github.com/subahdeepmistri"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-white text-black font-bold text-sm md:text-lg hover:bg-zinc-200 transition-colors"
-                    >
-                        <Github className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                        <span>GitHub</span>
-                    </motion.a>
-
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="https://linkedin.com/in/subhadeepmistri"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#0077b5] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#0077b5]/30 transition-all"
-                    >
-                        <Linkedin className="w-5 h-5 md:w-5 md:h-5" />
-                        <span>LinkedIn</span>
-                    </motion.a>
-
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="https://www.instagram.com/roronoa._.zorox/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-linear-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#fd1d1d]/30 transition-all"
-                    >
-                        <Instagram className="w-5 h-5 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                        <span>Instagram</span>
-                    </motion.a>
-
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="https://wa.me/918250518317"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 px-4 py-4 md:px-8 md:py-4 rounded-2xl md:rounded-full bg-[#25D366] text-white font-bold text-sm md:text-lg hover:brightness-110 hover:shadow-lg hover:shadow-[#25D366]/30 transition-all"
-                    >
-                        <MessageCircle className="w-5 h-5 md:w-5 md:h-5" />
-                        <span>WhatsApp</span>
-                    </motion.a>
                 </div>
             </div>
 
-            <footer className="mt-auto pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-600 text-sm">
+            <footer className="mt-auto pt-24 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-600 text-sm max-w-7xl mx-auto w-full">
                 <span>© 2025 Subhadeep Mistri. All Rights Reserved.</span>
                 <span>Designed & Engineered in Kolkata.</span>
             </footer>

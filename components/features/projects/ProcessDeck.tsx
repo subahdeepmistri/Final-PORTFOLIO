@@ -245,9 +245,7 @@ export default function ProcessDeck({ className, triggerPosition = 'fixed' }: Pr
 
                     {/* Text Label - DARK for readability on neon */}
                     <div className="relative z-10 flex flex-col items-start gap-0.5 min-w-[100px]">
-                        <span className="text-[10px] uppercase tracking-widest font-black text-zinc-800/80 group-hover:text-zinc-900 transition-colors">
-                            Case Study
-                        </span>
+
                         <span className="text-base font-black text-zinc-900 leading-none whitespace-nowrap drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]">
                             View Process
                         </span>

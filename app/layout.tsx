@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/layout/CustomCursor";
-import MobileNavbar from "@/components/layout/MobileNavbar";
+import Navbar from "@/components/layout/Navbar";
 
 // Outfit for Headings (Futuristic/Modern feel)
 const outfit = Outfit({
@@ -21,8 +21,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Subhadeep Mistri | UI/UX & Frontend",
-  description: "A cinematic portfolio experience.",
+  title: "Subhadeep Mistri | UI/UX Designer & Frontend Developer",
+  description: "Portfolio of Subhadeep Mistri - A cinematic digital experience showcasing intelligent design and fluid engineering.",
+  keywords: ["UI/UX Design", "Frontend Developer", "React", "Next.js", "Portfolio", "Web Design", "Subhadeep Mistri"],
+  openGraph: {
+    title: "Subhadeep Mistri | UI/UX & Frontend",
+    description: "A cinematic portfolio experience.",
+    url: "https://subhadeepmistri.com", // Replace with actual URL if known or leave placeholder
+    siteName: "Subhadeep Mistri Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Subhadeep Mistri | UI/UX & Frontend",
+    description: "A cinematic portfolio experience.",
+  },
 };
 
 export default function RootLayout({
@@ -42,7 +56,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <CustomCursor />
-          <MobileNavbar />
+          <Navbar />
           {children}
         </SmoothScroll>
       </body>

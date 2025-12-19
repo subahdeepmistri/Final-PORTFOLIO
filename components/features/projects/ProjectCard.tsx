@@ -21,7 +21,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         setIsNavigating(true);
         setTimeout(() => {
             router.push(`/projects/${project.slug}`);
-        }, 2000);
+        }, 800);
     };
 
     return (
@@ -32,7 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
             {/* Card Container - Changed to div to avoid nested <a> tags */}
             <div className="group relative h-full cursor-pointer">
-                <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary border border-white/5 h-full">
+                <div className="relative h-auto min-h-[450px] md:h-full md:min-h-0 md:aspect-4/3 overflow-hidden rounded-2xl bg-secondary border border-white/5 flex flex-col">
 
                     {/* 1. Main Clickable Link REMOVED (User requested disable main opening) */}
                     {/* The card itself is just visual now, but action buttons are interactive. */}
