@@ -201,14 +201,43 @@ function ComparisonSlider({ before, after, labelBefore, labelAfter }: { before: 
 // 3. MAIN COMPONENT
 // --------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------
+// 3. MAIN COMPONENT
+// --------------------------------------------------------------------------
+
 interface ProcessDeckProps {
     className?: string;
     triggerPosition?: 'fixed' | 'inline';
 }
 
+import { createPortal } from "react-dom";
+import { useLenis } from "lenis/react";
+
 export default function ProcessDeck({ className, triggerPosition = 'fixed' }: ProcessDeckProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<number>(0);
+    const [mounted, setMounted] = useState(false);
+    const lenis = useLenis();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Manage Scroll Locking
+    useEffect(() => {
+        if (isOpen) {
+            lenis?.stop();
+            document.body.style.overflow = 'hidden';
+        } else {
+            lenis?.start();
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            lenis?.start();
+            document.body.style.overflow = '';
+        };
+    }, [isOpen, lenis]);
 
     const activePhase = caseStudyData[activeTab];
 
@@ -258,218 +287,222 @@ export default function ProcessDeck({ className, triggerPosition = 'fixed' }: Pr
                 </div>
             </motion.button>
 
-            {/* MODAL OVERLAY */}
-            <AnimatePresence>
-                {isOpen && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            key="modal-backdrop"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, pointerEvents: "none" }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 z-60 bg-black/90 backdrop-blur-xl md:bg-black/80 md:backdrop-blur-sm cursor-pointer"
-                        />
+            {/* MODAL OVERLAY (PORTALED) */}
+            {mounted && createPortal(
+                <AnimatePresence>
+                    {isOpen && (
+                        <>
+                            {/* Backdrop */}
+                            <motion.div
+                                key="modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0, pointerEvents: "none", zIndex: -1 }}
+                                transition={{ duration: 0.3 }}
+                                onClick={() => setIsOpen(false)}
+                                className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl md:bg-black/80 md:backdrop-blur-sm cursor-pointer"
+                            />
 
-                        {/* Deck Container */}
-                        <motion.div
-                            key="modal-container"
-                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 20, scale: 0.95, pointerEvents: "none" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="fixed inset-0 z-70 flex items-center justify-center pointer-events-none"
-                        >
-                            <div className="pointer-events-auto bg-zinc-950 md:bg-zinc-950/90 backdrop-blur-2xl border-none md:border border-white/10 w-full h-dvh md:h-[750px] md:max-w-6xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative">
+                            {/* Deck Container */}
+                            <motion.div
+                                key="modal-container"
+                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 20, scale: 0.95, pointerEvents: "none", zIndex: -1 }}
+                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                                className="fixed inset-0 z-[101] flex items-center justify-center pointer-events-none"
+                            >
+                                <div className="pointer-events-auto bg-zinc-950 md:bg-zinc-950/90 backdrop-blur-2xl border-none md:border border-white/10 w-full h-dvh md:h-[750px] md:max-w-6xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative">
 
-                                {/* Mobile Full-Screen Gradient Background */}
-                                <div
-                                    className={`md:hidden absolute inset-0 bg-linear-to-b ${activePhase.mobileColor} opacity-50 transition-colors duration-700`}
-                                />
+                                    {/* Mobile Full-Screen Gradient Background */}
+                                    <div
+                                        className={`md:hidden absolute inset-0 bg-linear-to-b ${activePhase.mobileColor} opacity-50 transition-colors duration-700`}
+                                    />
 
-                                {/* Close Button UI */}
-                                <button
-                                    onClick={() => setIsOpen(false)}
-                                    className="absolute top-6 right-6 md:top-4 md:right-4 z-50 p-3 md:p-2 bg-black/20 md:bg-white/5 hover:bg-white/10 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-colors border border-white/5"
-                                >
-                                    <X className="w-6 h-6 md:w-5 md:h-5" />
-                                </button>
+                                    {/* Close Button UI */}
+                                    <button
+                                        onClick={() => setIsOpen(false)}
+                                        className="absolute top-6 right-6 md:top-4 md:right-4 z-50 p-3 md:p-2 bg-black/20 md:bg-white/5 hover:bg-white/10 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-colors border border-white/5"
+                                    >
+                                        <X className="w-6 h-6 md:w-5 md:h-5" />
+                                    </button>
 
-                                {/* LEFT: Navigation Tabs (Desktop Sidebar / Mobile Bottom Bar) */}
-                                <div className="hidden md:flex w-full md:w-72 border-r border-white/10 bg-black/20 p-6 flex-col shrink-0">
-                                    <h2 className="text-xs uppercase tracking-[0.2em] text-zinc-500 font-bold mb-6">Process Timeline</h2>
-                                    <div className="space-y-2">
-                                        {caseStudyData.map((phase, index) => {
-                                            const isActive = index === activeTab;
-                                            const Icon = phase.icon;
-                                            return (
-                                                <button
-                                                    key={phase.id}
-                                                    onClick={() => setActiveTab(index)}
-                                                    className={cn(
-                                                        "w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 relative overflow-hidden group",
-                                                        isActive ? "bg-white/5 border border-white/10" : "hover:bg-white/5 border border-transparent"
-                                                    )}
-                                                >
-                                                    {isActive && (
-                                                        <motion.div
-                                                            layoutId="activeTabGlow"
-                                                            className={`absolute inset-0 bg-linear-to-r ${phase.color} opacity-10`}
-                                                        />
-                                                    )}
+                                    {/* LEFT: Navigation Tabs (Desktop Sidebar / Mobile Bottom Bar) */}
+                                    <div className="hidden md:flex w-full md:w-72 border-r border-white/10 bg-black/20 p-6 flex-col shrink-0">
+                                        <h2 className="text-xs uppercase tracking-[0.2em] text-zinc-500 font-bold mb-6">Process Timeline</h2>
+                                        <div className="space-y-2">
+                                            {caseStudyData.map((phase, index) => {
+                                                const isActive = index === activeTab;
+                                                const Icon = phase.icon;
+                                                return (
+                                                    <button
+                                                        key={phase.id}
+                                                        onClick={() => setActiveTab(index)}
+                                                        className={cn(
+                                                            "w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 relative overflow-hidden group",
+                                                            isActive ? "bg-white/5 border border-white/10" : "hover:bg-white/5 border border-transparent"
+                                                        )}
+                                                    >
+                                                        {isActive && (
+                                                            <motion.div
+                                                                layoutId="activeTabGlow"
+                                                                className={`absolute inset-0 bg-linear-to-r ${phase.color} opacity-10`}
+                                                            />
+                                                        )}
 
-                                                    <div className={cn(
-                                                        "w-10 h-10 rounded-lg flex items-center justify-center transition-colors relative z-10",
-                                                        isActive ? "bg-black text-white shadow-lg" : "bg-white/5 text-zinc-500 group-hover:text-zinc-300"
-                                                    )}>
-                                                        <Icon className="w-5 h-5" />
-                                                    </div>
-
-                                                    <div className="relative z-10">
-                                                        <span className={cn(
-                                                            "text-xs font-mono uppercase tracking-wider block mb-0.5",
-                                                            isActive ? "text-accent" : "text-zinc-600"
+                                                        <div className={cn(
+                                                            "w-10 h-10 rounded-lg flex items-center justify-center transition-colors relative z-10",
+                                                            isActive ? "bg-black text-white shadow-lg" : "bg-white/5 text-zinc-500 group-hover:text-zinc-300"
                                                         )}>
-                                                            Phase 0{index + 1}
-                                                        </span>
-                                                        <span className={cn(
-                                                            "font-bold text-sm block",
-                                                            isActive ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"
-                                                        )}>
-                                                            {phase.title}
-                                                        </span>
-                                                    </div>
+                                                            <Icon className="w-5 h-5" />
+                                                        </div>
 
-                                                    {isActive && (
-                                                        <motion.div
-                                                            initial={{ opacity: 0, x: -10 }}
-                                                            animate={{ opacity: 1, x: 0 }}
-                                                            className="ml-auto text-accent"
-                                                        >
-                                                            <ChevronRight className="w-4 h-4" />
-                                                        </motion.div>
-                                                    )}
-                                                </button>
-                                            );
-                                        })}
+                                                        <div className="relative z-10">
+                                                            <span className={cn(
+                                                                "text-xs font-mono uppercase tracking-wider block mb-0.5",
+                                                                isActive ? "text-accent" : "text-zinc-600"
+                                                            )}>
+                                                                Phase 0{index + 1}
+                                                            </span>
+                                                            <span className={cn(
+                                                                "font-bold text-sm block",
+                                                                isActive ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"
+                                                            )}>
+                                                                {phase.title}
+                                                            </span>
+                                                        </div>
+
+                                                        {isActive && (
+                                                            <motion.div
+                                                                initial={{ opacity: 0, x: -10 }}
+                                                                animate={{ opacity: 1, x: 0 }}
+                                                                className="ml-auto text-accent"
+                                                            >
+                                                                <ChevronRight className="w-4 h-4" />
+                                                            </motion.div>
+                                                        )}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* RIGHT: Content Display */}
-                                <div className="flex-1 w-full h-full flex flex-col relative z-10">
+                                    {/* RIGHT: Content Display */}
+                                    <div className="flex-1 w-full h-full flex flex-col relative z-10">
 
-                                    {/* Desktop Gradient Blob (Hidden on Mobile) */}
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={activePhase.id + "-bg-desktop"}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5 }}
-                                            className={`hidden md:block absolute top-0 right-0 w-[500px] h-[500px] bg-linear-to-b ${activePhase.color} opacity-5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none`}
-                                        />
-                                    </AnimatePresence>
-
-                                    {/* SCROLLABLE CONTENT AREA */}
-                                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-24 md:p-12 md:pt-12 flex flex-col justify-start md:justify-center">
+                                        {/* Desktop Gradient Blob (Hidden on Mobile) */}
                                         <AnimatePresence mode="wait">
                                             <motion.div
-                                                key={activePhase.id}
-                                                initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
-                                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                                                exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
-                                                transition={{ duration: 0.3, ease: "easeOut" }}
-                                                className="relative z-10 w-full max-w-4xl mx-auto"
-                                            >
-                                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 md:bg-white/5 border border-white/10 backdrop-blur-md mb-6 self-start">
-                                                    <activePhase.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
-                                                    <span className="text-[10px] md:text-xs font-mono text-white/90 uppercase tracking-wider">
-                                                        Phase 0{activeTab + 1}: {activePhase.title}
-                                                    </span>
-                                                </div>
-
-                                                <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white mb-6 leading-[1.1] tracking-tight">
-                                                    {activePhase.content.headline}
-                                                </h3>
-
-                                                <p className="text-base sm:text-lg md:text-xl text-zinc-300 md:text-zinc-400 leading-relaxed mb-8 max-w-xl">
-                                                    {activePhase.content.description}
-                                                </p>
-
-                                                {/* CONDITIONAL RENDERING: COMPARISON SLIDER OR POINTS */}
-                                                {activePhase.comparison ? (
-                                                    <div className="mb-8">
-                                                        <ComparisonSlider
-                                                            before={activePhase.comparison.beforeImage}
-                                                            after={activePhase.comparison.afterImage}
-                                                            labelBefore={activePhase.comparison.beforeLabel}
-                                                            labelAfter={activePhase.comparison.afterLabel}
-                                                        />
-                                                    </div>
-                                                ) : null}
-
-                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                                    {activePhase.content.points.map((point, i) => (
-                                                        <motion.div
-                                                            key={i}
-                                                            initial={{ opacity: 0, x: -20 }}
-                                                            animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ delay: 0.1 + i * 0.1 }}
-                                                            className="flex items-center gap-4 p-4 rounded-xl bg-black/20 md:bg-white/5 border border-white/5 md:border-white/5 hover:border-white/20 transition-colors backdrop-blur-sm"
-                                                        >
-                                                            <div className={`w-2 h-2 rounded-full bg-linear-to-r ${activePhase.color} shadow-[0_0_10px_currentColor] shrink-0`} />
-                                                            <span className="text-sm text-zinc-100 font-medium">{point}</span>
-                                                        </motion.div>
-                                                    ))}
-                                                </div>
-                                            </motion.div>
+                                                key={activePhase.id + "-bg-desktop"}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.5 }}
+                                                className={`hidden md:block absolute top-0 right-0 w-[500px] h-[500px] bg-linear-to-b ${activePhase.color} opacity-5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none`}
+                                            />
                                         </AnimatePresence>
-                                    </div>
 
-                                    {/* MOBILE BOTTOM NAVIGATION BAR */}
-                                    <div className="md:hidden w-full bg-black/40 backdrop-blur-2xl border-t border-white/10 px-6 py-4 pb-8 flex justify-between items-center z-50">
-                                        {caseStudyData.map((phase, index) => {
-                                            const isActive = index === activeTab;
-                                            const Icon = phase.icon;
-                                            return (
-                                                <button
-                                                    key={phase.id}
-                                                    onClick={() => setActiveTab(index)}
-                                                    className="relative flex flex-col items-center gap-1.5 group w-full"
+                                        {/* SCROLLABLE CONTENT AREA */}
+                                        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-24 md:p-12 md:pt-12 flex flex-col justify-start md:justify-center">
+                                            <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={activePhase.id}
+                                                    initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
+                                                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                                    exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
+                                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                                    className="relative z-10 w-full max-w-4xl mx-auto"
                                                 >
-                                                    <div className={cn(
-                                                        "w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-300",
-                                                        isActive ? "bg-white text-black scale-110 shadow-lg shadow-white/10" : "bg-white/5 text-zinc-500"
-                                                    )}>
-                                                        <Icon className="w-4 h-4" />
+                                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 md:bg-white/5 border border-white/10 backdrop-blur-md mb-6 self-start">
+                                                        <activePhase.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
+                                                        <span className="text-[10px] md:text-xs font-mono text-white/90 uppercase tracking-wider">
+                                                            Phase 0{activeTab + 1}: {activePhase.title}
+                                                        </span>
                                                     </div>
-                                                    <span className={cn(
-                                                        "text-[9px] font-bold uppercase tracking-wider transition-colors",
-                                                        isActive ? "text-white" : "text-zinc-600"
-                                                    )}>
-                                                        {phase.title.slice(0, 4)}..
-                                                    </span>
 
-                                                    {isActive && (
-                                                        <motion.div
-                                                            layoutId="mobileTabIndicator"
-                                                            className="absolute -top-4 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"
-                                                        />
-                                                    )}
-                                                </button>
-                                            );
-                                        })}
+                                                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white mb-6 leading-[1.1] tracking-tight">
+                                                        {activePhase.content.headline}
+                                                    </h3>
+
+                                                    <p className="text-base sm:text-lg md:text-xl text-zinc-300 md:text-zinc-400 leading-relaxed mb-8 max-w-xl">
+                                                        {activePhase.content.description}
+                                                    </p>
+
+                                                    {/* CONDITIONAL RENDERING: COMPARISON SLIDER OR POINTS */}
+                                                    {activePhase.comparison ? (
+                                                        <div className="mb-8">
+                                                            <ComparisonSlider
+                                                                before={activePhase.comparison.beforeImage}
+                                                                after={activePhase.comparison.afterImage}
+                                                                labelBefore={activePhase.comparison.beforeLabel}
+                                                                labelAfter={activePhase.comparison.afterLabel}
+                                                            />
+                                                        </div>
+                                                    ) : null}
+
+                                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                                        {activePhase.content.points.map((point, i) => (
+                                                            <motion.div
+                                                                key={i}
+                                                                initial={{ opacity: 0, x: -20 }}
+                                                                animate={{ opacity: 1, x: 0 }}
+                                                                transition={{ delay: 0.1 + i * 0.1 }}
+                                                                className="flex items-center gap-4 p-4 rounded-xl bg-black/20 md:bg-white/5 border border-white/5 md:border-white/5 hover:border-white/20 transition-colors backdrop-blur-sm"
+                                                            >
+                                                                <div className={`w-2 h-2 rounded-full bg-linear-to-r ${activePhase.color} shadow-[0_0_10px_currentColor] shrink-0`} />
+                                                                <span className="text-sm text-zinc-100 font-medium">{point}</span>
+                                                            </motion.div>
+                                                        ))}
+                                                    </div>
+                                                </motion.div>
+                                            </AnimatePresence>
+                                        </div>
+
+                                        {/* MOBILE BOTTOM NAVIGATION BAR */}
+                                        <div className="md:hidden w-full bg-black/40 backdrop-blur-2xl border-t border-white/10 px-6 py-4 pb-8 flex justify-between items-center z-50">
+                                            {caseStudyData.map((phase, index) => {
+                                                const isActive = index === activeTab;
+                                                const Icon = phase.icon;
+                                                return (
+                                                    <button
+                                                        key={phase.id}
+                                                        onClick={() => setActiveTab(index)}
+                                                        className="relative flex flex-col items-center gap-1.5 group w-full"
+                                                    >
+                                                        <div className={cn(
+                                                            "w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-300",
+                                                            isActive ? "bg-white text-black scale-110 shadow-lg shadow-white/10" : "bg-white/5 text-zinc-500"
+                                                        )}>
+                                                            <Icon className="w-4 h-4" />
+                                                        </div>
+                                                        <span className={cn(
+                                                            "text-[9px] font-bold uppercase tracking-wider transition-colors",
+                                                            isActive ? "text-white" : "text-zinc-600"
+                                                        )}>
+                                                            {phase.title.slice(0, 4)}..
+                                                        </span>
+
+                                                        {isActive && (
+                                                            <motion.div
+                                                                layoutId="mobileTabIndicator"
+                                                                className="absolute -top-4 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"
+                                                            />
+                                                        )}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+
                                     </div>
 
                                 </div>
-
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </>
     );
 }
+

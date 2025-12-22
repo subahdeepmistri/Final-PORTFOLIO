@@ -115,7 +115,7 @@ export default async function ProjectPage({ params }: Props) {
             </section>
 
             {/* 2. INFO GRID (Sticky-ish feel) */}
-            <section className="border-t border-white/10 bg-black/50 backdrop-blur-sm sticky top-0 z-40">
+            <section className="border-t border-white/10 bg-black/50 backdrop-blur-sm relative">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 py-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
                         <div>
